@@ -1,4 +1,13 @@
+// TEST YOUR (TTY) MIGHT: DOOM FIRE! 
+// (c) 2022 const*void
+
 import { stdout } from 'process';
+
+//
+// copy+paste code as it helps you.
+//
+// monolothic file by deaisn - no dependencies.
+//
 
 // For zig version, see:
 // https://github.com/const-void/DOOM-fire-zig/
@@ -8,8 +17,6 @@ import { stdout } from 'process';
 let sz=stdout.getWindowSize();
 let term_col=sz[0];
 let term_row=sz[1];
-
-//input
 
 // TTY ///////////////////////////
 //escape sequence
@@ -107,6 +114,9 @@ let s_sz_min=0;
 let s_sz_max=0;
 let s_sz_avg=0;
 let s_frame_tic=0;
+let time_start=Date.now();
+let time_now=Date.now();
+let time_pass=time_now-time_start;
   
 function drawFrame() {
   doFire();
@@ -134,6 +144,7 @@ function drawFrame() {
   }
 
   stdout.write(s);
+  time_now=Date.now();
   s_len=s.length;
   s_frame_tic++;
   if (s_sz_min==0) {
@@ -146,8 +157,10 @@ function drawFrame() {
     if (s_len > s_sz_max) { s_sz_max=s_len; }
     s_sz_avg=s_sz_avg*(s_frame_tic-1)/s_frame_tic+s_len/s_frame_tic;
   }
+  time_pass=(time_now-time_start)/1000;
 
-  stdout.write(`${fg[0]} mem: ${fmtKB(s_sz_min)} min / ${fmtKB(s_sz_avg)} avg / ${fmtKB(s_sz_max)} max`)
+  //some stats
+  stdout.write(`${fg[0]} mem: ${fmtKB(s_sz_min)} min / ${fmtKB(s_sz_avg)} avg / ${fmtKB(s_sz_max)} max [ ${(s_frame_tic/time_pass).toFixed(2)} fps ] ${s_frame_tic}`)
  
 }
 
@@ -159,6 +172,7 @@ stdout.write(screen_buf_on);
 stdout.write(cursor_hide);
 
 let ok=true;
+time_start=Date.now();
 while(ok) {
   drawFrame();
 }
