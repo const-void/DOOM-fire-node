@@ -1,0 +1,15 @@
+{
+  "name": "doom-fire",
+  "version": "1.0.0",
+  "description": "Doom Fire",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "const*void",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  }
+}
