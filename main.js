@@ -1,12 +1,12 @@
 // TEST YOUR (TTY) MIGHT: DOOM FIRE! 
-// (c) 2022 const*void
+// (c) 2022 const void*
 
 import { stdout } from 'process';
 
 //
-// copy+paste code as it helps you.
+// copy+paste code as it helps.
 //
-// monolothic file by deaisn - no dependencies.
+// monolothic file by design - no dependencies.
 //
 
 // For zig version, see:
